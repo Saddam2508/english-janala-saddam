@@ -171,3 +171,50 @@ document.getElementById("btn-search").addEventListener("click", () => {
       displayLevelWord(filterWords);
     });
 });
+
+const fagText = [
+  "How can I start learning English on this website?",
+  "Is this website free to use?",
+  "Do I need to create an account?",
+  "How can I build my English vocabulary?",
+  "Do you offer certificates for completed courses?",
+];
+
+const fag = () => {
+  const fagContainer = document.getElementById("fag-container");
+  fagText.map((text, index) => {
+    fagContainer.innerHTML += `
+    <div
+          class="card bg-gray-300 p-5 rounded-lg"
+        >
+          <div class="card flex-row justify-between items-center">
+          <span>${index + 1}. ${text}</span>
+          <button onclick = "handleFag(${index}, this)" class="text-xl font-bold cursor-pointer">+</button>
+          </div>
+          <p id ="faq-${index}" class = "pl-5 hidden"></p>
+        </div>
+    `;
+  });
+};
+fag();
+
+const faqAns = [
+  "You can start learning English by creating an account and exploring the available lessons. Begin with basic vocabulary and grammar lessons, then practice through quizzes, exercises, and interactive activities.",
+  "Yes, this website offers many free learning resources. You can access lessons, vocabulary practice, and quizzes without any cost.",
+  "Creating an account is recommended because it allows you to track your progress, save your lessons, and access additional learning features.",
+  "You can build your vocabulary by practicing daily lessons, learning new words, reading examples, and using the words in sentences and quizzes.",
+  "Yes, after successfully completing certain courses or levels, you may receive a certificate to recognize your learning progress.",
+];
+
+const handleFag = (index, btn) => {
+  const ansContainer = document.getElementById(`faq-${index}`);
+
+  if (ansContainer.classList.contains("hidden")) {
+    ansContainer.classList.remove("hidden");
+    ansContainer.innerText = faqAns[index];
+    btn.innerText = "-";
+  } else {
+    ansContainer.classList.add("hidden");
+    btn.innerText = "+";
+  }
+};
